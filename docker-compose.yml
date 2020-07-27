@@ -1,0 +1,26 @@
+version: '3'
+services:
+    golang:
+        build: ./server
+        volumes: 
+            - ./server/src:/go/src/work
+        depends_on: 
+            - db
+        environment: 
+            - DATABASE_HOST=db
+            - DATABASE_PASSWORD=hogehoge
+            - DATABASE=dev
+            - DATABASE_USERNAME=root
+        ports: 
+            - "8080:8080"
+    db:
+        image: mysql:latest
+        volumes: 
+            - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+        environment: 
+            MYSQL_ROOT_PASSWORD: 'hogehoge'
+            MYSQL_DATABASE: 'dev'
+        expose: 
+            - "3306"
+        ports: 
+            - "3400:3306"

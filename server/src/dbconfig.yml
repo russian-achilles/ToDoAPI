@@ -1,0 +1,5 @@
+development:
+    dialect: mysql
+    datasource: root:hogehoge@tcp(db:3306)/dev?parseTime=true
+    dir: data/migrations
+    table: migrations
